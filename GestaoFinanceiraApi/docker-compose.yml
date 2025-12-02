@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # Banco de Dados PostgreSQL
+  postgres:
+    image: postgres:16-alpine
+    container_name: gestao-financeira-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gestaofinanceiro_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - gestao-financeira-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Aplicação Spring Boot
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gestao-financeira-app
+    restart: unless-stopped
+    environment:
+      # Ativa o profile de produção
+      SPRING_PROFILES_ACTIVE: prod
+
+      # Configuração do banco de dados
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/gestaofinanceiro_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+
+      # JWT
+      JWT_SECRET: ${JWT_SECRET:-development-secret-key-change-in-production}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+
+      # Java Options
+      JAVA_OPTS: "-Xmx512m -Xms256m"
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - gestao-financeira-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+# Volumes para persistência de dados
+volumes:
+  postgres_data:
+    driver: local
+
+# Rede para comunicação entre serviços
+networks:
+  gestao-financeira-network:
+    driver: bridge
+
