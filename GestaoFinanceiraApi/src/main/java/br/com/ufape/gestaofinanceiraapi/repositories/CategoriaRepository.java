@@ -1,0 +1,21 @@
+package br.com.ufape.gestaofinanceiraapi.repositories;
+
+import br.com.ufape.gestaofinanceiraapi.entities.CategoriaEntity;
+import br.com.ufape.gestaofinanceiraapi.entities.enums.CategoriaType;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface CategoriaRepository extends JpaRepository<CategoriaEntity, String> {
+    List<CategoriaEntity> findAllByUserUuid(String userId);
+
+    // Encontrar categoria por nome, tipo e ID do usuário
+    Optional<CategoriaEntity> findByNomeAndTipoAndUserUuid(String nome, CategoriaType tipo, String userId);
+    Optional<CategoriaEntity> findByNome(String nome);
+    Optional<CategoriaEntity> findByNomeAndUserUuid(String categoriaNome, String userId);
+    
+    List<CategoriaEntity> findAllByUserUuidAndTipo(String userUuid, CategoriaType tipo);
+    Optional<CategoriaEntity> findByIsSemCategoriaAndTipoAndUserUuid(boolean isSemCategoria, CategoriaType tipo, String userId);
+}
+

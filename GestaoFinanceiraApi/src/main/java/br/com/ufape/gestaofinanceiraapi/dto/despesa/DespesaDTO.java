@@ -1,0 +1,18 @@
+package br.com.ufape.gestaofinanceiraapi.dto.despesa;
+
+import br.com.ufape.gestaofinanceiraapi.dto.common.TransacaoDTO;
+import jakarta.validation.constraints.NotBlank;
+
+public class DespesaDTO extends TransacaoDTO {
+    @NotBlank(message = "O destino do pagamento é obrigatório.")
+    private String destinoPagamento;
+
+    // Getters and Setters
+    public String getDestinoPagamento() {
+        return destinoPagamento;
+    }
+
+    public void setDestinoPagamento(String destinoPagamento) {
+        this.destinoPagamento = destinoPagamento;
+    }
+}

@@ -1,0 +1,45 @@
+package br.com.ufape.gestaofinanceiraapi.dto.categoria;
+
+import br.com.ufape.gestaofinanceiraapi.entities.enums.CategoriaType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public class CategoriaCreateDTO {
+
+    @NotBlank(message = "O nome é obrigatório.")
+    private String nome;
+
+    @NotBlank(message = "O tipo é obrigatório.")
+    @Pattern(
+            regexp = "RECEITAS|DESPESAS",
+            message = "Tipo inválido. Valores permitidos: RECEITAS, DESPESAS."
+    )
+    private String tipo;
+
+    // Construtores
+    public CategoriaCreateDTO(String nome, String tipo) {
+        this.nome = nome;
+        this.tipo = tipo;
+    }
+
+    // Getters and Setters
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public CategoriaType getTipoEnum() {
+        return CategoriaType.valueOf(tipo);
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+}
