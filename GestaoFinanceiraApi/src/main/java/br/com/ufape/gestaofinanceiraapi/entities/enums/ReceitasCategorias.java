@@ -1,4 +1,4 @@
-package br.com.gestorfinanceiro.models.enums;
+package br.com.ufape.gestaofinanceiraapi.entities.enums;
 
 public enum ReceitasCategorias {
     SALARIO,

@@ -1,4 +1,4 @@
-package br.com.gestorfinanceiro.models;
+package br.com.ufape.gestaofinanceiraapi.entities;
 
 import jakarta.persistence.*;
 

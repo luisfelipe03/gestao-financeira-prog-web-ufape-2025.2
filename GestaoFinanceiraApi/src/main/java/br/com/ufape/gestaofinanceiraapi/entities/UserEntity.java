@@ -1,6 +1,6 @@
-package br.com.gestorfinanceiro.models;
+package br.com.ufape.gestaofinanceiraapi.entities;
 
-import br.com.gestorfinanceiro.models.enums.Roles;
+import br.com.ufape.gestaofinanceiraapi.entities.enums.Roles;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
