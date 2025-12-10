@@ -1,0 +1,14 @@
+package br.com.ufape.gestaofinanceiraapi.exceptions.orcamentomensal;
+
+import br.com.ufape.gestaofinanceiraapi.entities.CategoriaEntity;
+
+import java.time.YearMonth;
+
+public class OrcamentoMensalAlreadyExistsException extends RuntimeException {
+    
+    public OrcamentoMensalAlreadyExistsException(CategoriaEntity categoria, YearMonth periodo) {
+        super(String.format("Já existe um orçamento mensal para a categoria '%s' e o período %s", 
+              categoria.getNome(),
+              periodo));
+    }
+}
