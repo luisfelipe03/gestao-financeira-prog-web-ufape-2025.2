@@ -1,0 +1,1361 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Gestão Financeira
+meta:
+  id: wrk_ac8af9dd87a84ec080a045e98c9a3580
+  created: 1766233958079
+  modified: 1766233958079
+  description: ""
+collection:
+  - name: Categoria
+    meta:
+      id: fld_5d0284b25b14444f809f12fd4f97682f
+      created: 1766234041627
+      modified: 1766236515749
+      sortKey: -1766234122487.5
+      description: ""
+    children:
+      - url: http://localhost:8090/categorias
+        name: Criar nova categoria
+        meta:
+          id: req_ff9557d73798401bac1e2ea5306995f8
+          created: 1766234003688
+          modified: 1766236108056
+          isPrivate: false
+          description: ""
+          sortKey: -1766234044099
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Alimentação",
+            	"tipo":"DESPESA"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/categorias
+        name: Listar todas as categorias
+        meta:
+          id: req_7f784e2d9af54e9891600307cfd062a1
+          created: 1766235680090
+          modified: 1766235738307
+          isPrivate: false
+          description: ""
+          sortKey: -1766235680090
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/categorias/despesas
+        name: Listar todas as despesas
+        meta:
+          id: req_478be03f204e4d44a6f04fb566ce030c
+          created: 1766235769013
+          modified: 1766235794646
+          isPrivate: false
+          description: ""
+          sortKey: -1766235769013
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/categorias/receitas
+        name: Listar todas as receitas
+        meta:
+          id: req_512ccd7c0b2f4701aedbdb97033e7bfe
+          created: 1766235802491
+          modified: 1766235821804
+          isPrivate: false
+          description: ""
+          sortKey: -1766235802491
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/categorias/:categoria_id
+        name: Atualizar categoria
+        meta:
+          id: req_47792c35397f42efa60da7f44dc39109
+          created: 1766235858645
+          modified: 1766235957653
+          isPrivate: false
+          description: ""
+          sortKey: -1766234043999
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {     
+            	"nome": "Alimentação e Bebidas",     
+            	"tipo": "DESPESA"   
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: categoria_id
+            value: ""
+      - url: http://localhost:8090/categorias/:categoria_id
+        name: Excluir categoria
+        meta:
+          id: req_a1c510d3786949d28587a1866902d3a5
+          created: 1766235984936
+          modified: 1766235999652
+          isPrivate: false
+          description: ""
+          sortKey: -1766234043899
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Testes de validação
+        meta:
+          id: fld_a67c0aa08dc24e72b75c5bfb68c70620
+          created: 1766236051716
+          modified: 1766236051716
+          sortKey: -1766236051716
+          description: ""
+        children:
+          - url: http://localhost:8090/categorias
+            name: Categoria com nome vazio
+            meta:
+              id: req_d47a19e6d27b49bd84eb32fa6e347c8a
+              created: 1766236062739
+              modified: 1766236207203
+              isPrivate: false
+              description: ""
+              sortKey: -1766236062739
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {     
+                	"nome": "",     
+                	"tipo": "DESPESAS"   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8090/categorias
+            name: Categoria com tipo inválido
+            meta:
+              id: req_e9779f2f32a44c068f758d66dd1c6cd8
+              created: 1766236187278
+              modified: 1766236224286
+              isPrivate: false
+              description: ""
+              sortKey: -1766236187278
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {     
+                	"nome": "Teste",     
+                	"tipo": "TIPO_INVALIDO"   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: Autenticação
+    meta:
+      id: fld_3e20ec32034f4305b7e44611e68142ee
+      created: 1766234149441
+      modified: 1766234533154
+      sortKey: -1766234149441
+      description: ""
+    children:
+      - url: http://localhost:8090/auth/register
+        name: Cadastro
+        meta:
+          id: req_70c48e27ba5e48dcb625e2d6e0e4104f
+          created: 1766233964883
+          modified: 1766234339621
+          isPrivate: false
+          description: ""
+          sortKey: -1766234154489
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Luis Felipe",
+              "username": "luisfelipe03",
+              "email": "felipe@email.com",
+              "password": "123456",
+              "role": "ADMIN",
+              "estaAtivo": true
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/auth/login
+        name: Login
+        meta:
+          id: req_e9d37116284a4f8484daba3001e3d112
+          created: 1766234167739
+          modified: 1766234544477
+          isPrivate: false
+          description: ""
+          sortKey: -1766234099294
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "felipe@email.com",
+              "password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        scripts:
+          afterResponse: "\n"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Despesa
+    meta:
+      id: fld_79f597e88f054bcf9b79f6b3ee1d9614
+      created: 1766236502791
+      modified: 1766237629727
+      sortKey: -1766234115749.125
+      description: ""
+    children:
+      - url: http://localhost:8090/despesas
+        name: Criar nova despesa
+        meta:
+          id: req_c47338fb908a43478c0bbb69bd205dd5
+          created: 1766236528607
+          modified: 1766236673937
+          isPrivate: false
+          description: ""
+          sortKey: -1766236528607
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {     
+            	"data": "2025-01-15",     
+            	"categoria": "Alimentacao",     
+            	"valor": 25.50,     
+            	"observacoes": "Almoço no restaurante",     		         		   "destinoPagamento": "Cartão de crédito"  
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/despesas
+        name: Listar todas as despesas do usuário
+        meta:
+          id: req_94861c5dd7844b458c392886c861416f
+          created: 1766236593824
+          modified: 1766236979894
+          isPrivate: false
+          description: ""
+          sortKey: -1766236964462
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/despesas/:despesa_id
+        name: Buscar despesa por ID
+        meta:
+          id: req_84e2186b4b914a9e86bdac90bf15f878
+          created: 1766236964362
+          modified: 1766236977817
+          isPrivate: false
+          description: ""
+          sortKey: -1766236964362
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/despesas/:despesa_id
+        name: Atualizar despesa
+        meta:
+          id: req_be4221bdd69747a3ae6a64e7eb6a9428
+          created: 1766236992015
+          modified: 1766237002406
+          isPrivate: false
+          description: ""
+          sortKey: -1766236528507
+        method: PUT
+        body:
+          mimeType: application/json
+          text: '{     "data": "2025-01-16",     "categoria": "Alimentação",     "valor":
+            30.00,     "observacoes": "Jantar no
+            restaurante",     "destinoPagamento": "Dinheiro"   }'
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/despesas/:despesa_id
+        name: Excluir despesa
+        meta:
+          id: req_1d0d4a5018b54290b8e4b6d53ce5c238
+          created: 1766237012075
+          modified: 1766237025601
+          isPrivate: false
+          description: ""
+          sortKey: -1766236528407
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/despesas/por-intervalo-de-datas
+        name: Despesas por intervalo de datas
+        meta:
+          id: req_1032306ebf3445bea44eff253dd1c418
+          created: 1766237287722
+          modified: 1766237304875
+          isPrivate: false
+          description: ""
+          sortKey: -1766236746484.5
+        method: GET
+        parameters:
+          - name: inicio
+            value: 2025-01-01
+            disabled: false
+          - name: fim
+            value: 2025-01-31
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/despesas/por-intervalo-de-valores
+        name: Despesas por intervalo de valores
+        meta:
+          id: req_a6bbf7e7abca426ab6c82a707462bd18
+          created: 1766237312992
+          modified: 1766237321690
+          isPrivate: false
+          description: ""
+          sortKey: -1766236637545.75
+        method: GET
+        parameters:
+          - name: min
+            value: "10.00"
+            disabled: false
+          - name: max
+            value: "100.00"
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Graficos
+        meta:
+          id: fld_26054d197981452a98963a15fe905703
+          created: 1766237061246
+          modified: 1766237061246
+          sortKey: -1766237061246
+          description: ""
+        children:
+          - url: http://localhost:8090/despesas/grafico-barras
+            name: Gráfico de barras
+            meta:
+              id: req_b444eecfb42b43d1bb0454e484bbaad9
+              created: 1766237075293
+              modified: 1766237230848
+              isPrivate: false
+              description: ""
+              sortKey: -1766237075293
+            method: GET
+            parameters:
+              - name: inicio
+                value: 2025-01
+                disabled: false
+              - name: fim
+                value: 2025-12
+                disabled: false
+            headers:
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8090/despesas/grafico-pizza
+            name: Gráfico de pizza
+            meta:
+              id: req_e755c0f20a624bada6bb5a16803374eb
+              created: 1766237243779
+              modified: 1766237256353
+              isPrivate: false
+              description: ""
+              sortKey: -1766237243779
+            method: GET
+            parameters:
+              - name: inicio
+                value: 2025-01-01
+                disabled: false
+              - name: fim
+                value: 2025-12-31
+                disabled: false
+            headers:
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Testes de validação
+        meta:
+          id: fld_e37bbd5a11714619a3eb43f2b7d52b51
+          created: 1766237270509
+          modified: 1766237270509
+          sortKey: -1766237270509
+          description: ""
+        children:
+          - url: http://localhost:8090/despesas
+            name: Criar despesa com dados inválidos (valor negativo)
+            meta:
+              id: req_377a956f340a491e862dd9cc783e7e97
+              created: 1766237342587
+              modified: 1766237373964
+              isPrivate: false
+              description: ""
+              sortKey: -1766237342587
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {     
+                	"data": "2025-01-15",     
+                	"categoria": "Alimentacao",     
+                	"valor": -25.50,     
+                	"observacoes": "Teste inválido",     
+                	"destinoPagamento": "Cartão"   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8090/despesas
+            name: Criar despesa com campos obrigatórios faltando
+            meta:
+              id: req_40a58e7d82544420acf07e7038a38e9e
+              created: 1766237389904
+              modified: 1766237410581
+              isPrivate: false
+              description: ""
+              sortKey: -1766237389904
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {     
+                	"data": "2025-01-15",     
+                	"valor": 25.50   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: Receita
+    meta:
+      id: fld_d0cab3a7a8e948d9b209307f48540334
+      created: 1766237624951
+      modified: 1766239325073
+      sortKey: -1766234115327.9766
+      description: ""
+    children:
+      - url: http://localhost:8090/receitas
+        name: Criar nova receita
+        meta:
+          id: req_6dbb3acb094b4b28b1802e67d438107e
+          created: 1766237812174
+          modified: 1766238183050
+          isPrivate: false
+          description: ""
+          sortKey: -1766237857702
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {     
+            	"data": "2025-01-01",     
+            	"categoria": "Salario",     
+            	"valor": 5000.00,     
+            	"observacoes": "Salário mensal",     
+            	"origemDoPagamento": "Transferência bancária"   
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/receitas
+        name: Listar todas as receitas
+        meta:
+          id: req_a03306db5b154394bf05581b3055fd03
+          created: 1766237933582
+          modified: 1766237946855
+          isPrivate: false
+          description: ""
+          sortKey: -1766237933582
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/receitas/:receita_id
+        name: Buscar receita por ID
+        meta:
+          id: req_9dcfdc594ab6437e8896f39dc5b6e2c7
+          created: 1766237958120
+          modified: 1766237968389
+          isPrivate: false
+          description: ""
+          sortKey: -1766237872878
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/receitas/:receita_id
+        name: Atualizar receita
+        meta:
+          id: req_da4272217a024f58931bb1b56ad9d34e
+          created: 1766237978916
+          modified: 1766238213908
+          isPrivate: false
+          description: ""
+          sortKey: -1766237842526
+        method: PUT
+        body:
+          mimeType: application/json
+          text: >-
+            {     
+            	"data": "2025-01-02",     
+            	"categoria": "Salario",     
+            	"valor": 5500.00,     
+            	"observacoes": "Salário mensal com bônus",     		      "origemDoPagamento": "Transferência bancária"   
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/receitas/:receita_id
+        name: Excluir receita
+        meta:
+          id: req_02b96d5eaaa34bba9d85a72acf0c712a
+          created: 1766238233995
+          modified: 1766238243414
+          isPrivate: false
+          description: ""
+          sortKey: -1766237842426
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/receitas/por-intervalo-de-datas
+        name: Receitas por intervalo de datas
+        meta:
+          id: req_77f518010d4e4996ac2317cf9c944446
+          created: 1766238366554
+          modified: 1766238382841
+          isPrivate: false
+          description: ""
+          sortKey: -1766237865290
+        method: GET
+        parameters:
+          - name: inicio
+            value: 2025-01-01
+            disabled: false
+          - name: fim
+            value: 2025-01-31
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/receitas/por-intervalo-de-valores
+        name: Receitas por intervalo de valores
+        meta:
+          id: req_0676eba97de54ac4a5c121adca6921bb
+          created: 1766238393215
+          modified: 1766238403008
+          isPrivate: false
+          description: ""
+          sortKey: -1766237861496
+        method: GET
+        parameters:
+          - name: min
+            value: "1000.00"
+            disabled: false
+          - name: max
+            value: "10000.00"
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Graficos
+        meta:
+          id: fld_65e7ed975f964365864f5c5afcb3fe93
+          created: 1766238267718
+          modified: 1766238267718
+          sortKey: -1766238267718
+          description: ""
+        children:
+          - url: http://localhost:8090/receitas/grafico-pizza
+            name: Gráfico de pizza
+            meta:
+              id: req_79a74525db5e4bb8b97db62565034790
+              created: 1766238278844
+              modified: 1766238291740
+              isPrivate: false
+              description: ""
+              sortKey: -1766238278844
+            method: GET
+            parameters:
+              - name: inicio
+                value: 2025-01-01
+                disabled: false
+              - name: fim
+                value: 2025-12-31
+                disabled: false
+            headers:
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8090/receitas/grafico-barras
+            name: Gráfico de barras
+            meta:
+              id: req_5417ed3079604f5faca9b55c023b9217
+              created: 1766238304899
+              modified: 1766238313706
+              isPrivate: false
+              description: ""
+              sortKey: -1766238304899
+            method: GET
+            parameters:
+              - name: inicio
+                value: 2025-01
+                disabled: false
+              - name: fim
+                value: 2025-12
+                disabled: false
+            headers:
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Teste de validação
+        meta:
+          id: fld_8a85347e7fb148ffafdf8d63824d55ba
+          created: 1766238619838
+          modified: 1766238619838
+          sortKey: -1766238619838
+          description: ""
+        children:
+          - url: http://localhost:8090/receitas
+            name: Criar receita com dados inválidos (valor negativo)
+            meta:
+              id: req_b32f9a47dd904356bb92056e6debb2a9
+              created: 1766238630755
+              modified: 1766238662650
+              isPrivate: false
+              description: ""
+              sortKey: -1766238630755
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {     
+                	"data": "2025-01-15",     
+                	"categoria": "Freelance",     
+                	"valor": -500.00,     
+                	"observacoes": "Teste inválido",     
+                	"origemDoPagamento": "Pix"   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8090/receitas
+            name: Criar receita com campos obrigatórios faltando
+            meta:
+              id: req_1add9e0e1c254c51831c15c07d97dde8
+              created: 1766238685325
+              modified: 1766239022870
+              isPrivate: false
+              description: ""
+              sortKey: -1766238685325
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {     
+                	"data": "2025-01-15",     
+                	"valor": 500.00   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: Dashboard
+    meta:
+      id: fld_a81e1d0cc00d4c74abae131331cd9bb8
+      created: 1766239287134
+      modified: 1766239290081
+      sortKey: -1766234112379.9375
+      description: ""
+    children:
+      - url: http://localhost:8090/dashboard/saldo-total
+        name: Obter saldo total do período
+        meta:
+          id: req_d17339d81f5347c29edb590b60336927
+          created: 1766240796825
+          modified: 1766240807014
+          isPrivate: false
+          description: ""
+          sortKey: -1766240796825
+        method: GET
+        parameters:
+          - name: periodo
+            value: 2025-01
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/dashboard/maior-despesa
+        name: Obter maior despesa do período
+        meta:
+          id: req_6d7a616dc8ec469ea38df3f43f151d81
+          created: 1766240816205
+          modified: 1766240824943
+          isPrivate: false
+          description: ""
+          sortKey: -1766240816205
+        method: GET
+        parameters:
+          - name: periodo
+            value: 2025-01
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/dashboard/maior-receita
+        name: Obter maior receita do período
+        meta:
+          id: req_b2a7d04690b04ceb801cb049b79294d9
+          created: 1766240841823
+          modified: 1766240848664
+          isPrivate: false
+          description: ""
+          sortKey: -1766240841823
+        method: GET
+        parameters:
+          - name: periodo
+            value: 2025-01
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/dashboard/categoria-maior-despesa
+        name: Obter categoria com maior despesa
+        meta:
+          id: req_eae081f7a30a4ac1aee090bfab520c5a
+          created: 1766240863322
+          modified: 1766240872113
+          isPrivate: false
+          description: ""
+          sortKey: -1766240863322
+        method: GET
+        parameters:
+          - name: periodo
+            value: 2025-01
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/dashboard/categoria-maior-receita
+        name: Obter categoria com maior receita
+        meta:
+          id: req_f0459a2a925e4ccf83dd89353f9cf799
+          created: 1766240890601
+          modified: 1766240897843
+          isPrivate: false
+          description: ""
+          sortKey: -1766240890601
+        method: GET
+        parameters:
+          - name: periodo
+            value: 2025-01
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/dashboard/despesa-total
+        name: Obter total de despesas do mês
+        meta:
+          id: req_b0a3dd9dc6514f988ded8defeca9b5f1
+          created: 1766240906232
+          modified: 1766240928034
+          isPrivate: false
+          description: ""
+          sortKey: -1766240906232
+        method: GET
+        parameters:
+          - name: periodo
+            value: 2025-01
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/dashboard/receita-total
+        name: Obter total de receitas do mês
+        meta:
+          id: req_563f7841c0c940eeb46e2a0a4bf50a75
+          created: 1766240935673
+          modified: 1766240944776
+          isPrivate: false
+          description: ""
+          sortKey: -1766240935673
+        method: GET
+        parameters:
+          - name: periodo
+            value: 2025-01
+            disabled: false
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Orçamento mensal
+    meta:
+      id: fld_fd42c1f73e2745aa8886c26d4984fa09
+      created: 1766239308201
+      modified: 1766239322940
+      sortKey: -1766234114906.8281
+      description: ""
+    children:
+      - url: http://localhost:8090/orcamento-mensal
+        name: Listar todos os orçamentos do usuário
+        meta:
+          id: req_c50c0c859c6347279aa070c7737b48b4
+          created: 1766240430955
+          modified: 1766240533414
+          isPrivate: false
+          description: ""
+          sortKey: -1766240523990
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/orcamento-mensal
+        name: Criar novo orçamento mensal
+        meta:
+          id: req_39e192fcad5748aeb7877b7686719157
+          created: 1766240471856
+          modified: 1766240555405
+          isPrivate: false
+          description: ""
+          sortKey: -1766240510881.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |+
+            {    
+            	"categoria": "Alimentacao",    
+            	"valorLimite": 500.00,     
+            	"periodo": "2025-01"   
+            }
+
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/orcamento-mensal/:orcamento_uuid
+        name: Buscar orçamentos por período
+        meta:
+          id: req_f0af06d295f24a6e84850ca71fb15b59
+          created: 1766240523890
+          modified: 1766240531732
+          isPrivate: false
+          description: ""
+          sortKey: -1766240523890
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/orcamento-mensal/:orcamento_uuid
+        name: Atualizar orçamento mensal
+        meta:
+          id: req_57a77c26387e4dd1b6987aa08cb4c0c9
+          created: 1766240548506
+          modified: 1766240600328
+          isPrivate: false
+          description: ""
+          sortKey: -1766240507629.375
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {     
+            	"categoria": "Alimentacao",     
+            	"valorLimite": 600.00,     
+            	"periodo": "2025-01"  
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8090/orcamento-mensal/:orcamento_uuid
+        name: Excluir orçamento mensal
+        meta:
+          id: req_75fb5a67594e42f2a0d8a7822795ac13
+          created: 1766240596623
+          modified: 1766240606090
+          isPrivate: false
+          description: ""
+          sortKey: -1766240504377.25
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Teste de validação
+        meta:
+          id: fld_36edd6af9d8644b390b1c13dcc2ad953
+          created: 1766240627830
+          modified: 1766240627830
+          sortKey: -1766240627830
+          description: ""
+        children:
+          - url: http://localhost:8090/orcamento-mensal
+            name: Orçamento com valor inválido (negativo)
+            meta:
+              id: req_4207f2d131784fc483918dc6748928fd
+              created: 1766240643087
+              modified: 1766240665897
+              isPrivate: false
+              description: ""
+              sortKey: -1766240643087
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {     
+                	"categoria": "Teste",     
+                	"valorLimite": -100.00,     
+                	"periodo": "2025-01"   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8090/orcamento-mensal
+            name: Orçamento com categoria vazia
+            meta:
+              id: req_492759f0c418411c8edae87f89a647ac
+              created: 1766240673778
+              modified: 1766240746643
+              isPrivate: false
+              description: ""
+              sortKey: -1766240673778
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {     
+                	"categoria": "",     
+                	"valorLimite": 100.00,     
+                	"periodo": "2025-01"   
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Authorization
+                value: Bearer {{token}}
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_08dd440d258fa75798806f05c04e7c2630fa2e10
+    created: 1766233958081
+    modified: 1766234533151
+environments:
+  name: Base Environment
+  meta:
+    id: env_08dd440d258fa75798806f05c04e7c2630fa2e10
+    created: 1766233958080
+    modified: 1766235651265
+    isPrivate: false
+  data:
+    token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWlzZmVsaXBlMDMiLCJyb2xlIjoiQURNSU4iLCJpZCI6IjFiNGJhYjBmLTkyMjMtNDkzYS05M2I2LTU4NWU3Y2RiYzRiMiIsImV4cCI6MTc2NjMyMDkzMywiaWF0IjoxNzY2MjM0NTMzLCJlc3RhQXRpdm8iOiJ0cnVlIiwiZW1haWwiOiJmZWxpcGVAZW1haWwuY29tIn0.2EO-6FpnyE_p3zCY47qdOUsZO67A46_ZYDt8xKozzGmiZmabN8ltOvqAV3_pWGcnAZcWZPbwR5aM_OFDcDjjCQ
