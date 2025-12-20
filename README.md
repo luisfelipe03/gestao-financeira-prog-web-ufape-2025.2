@@ -2,6 +2,12 @@
 
 API REST desenvolvida em Spring Boot para gerenciamento de finanças pessoais, permitindo controle de receitas, despesas, categorias e orçamentos mensais.
 
+## Autores
+
+- Diego Rodrigues Figueiredo
+- Gilberto de Brito Neto
+- Luis Felipe de Oliveira Andrade
+
 ## Tecnologias
 
 - Java 17
